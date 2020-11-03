@@ -1,30 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   StyleSheet,
+  SafeAreaView,
   View,
   Text
 } from 'react-native';
+import HomePage from './screens/homePage';
 
 const App = () => {
+  
   return (
     <View>
-      <Text>
-        Sell it app
-      </Text>
+      <HomePage />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-
+  
 });
 
 export default App;
