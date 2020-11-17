@@ -6,13 +6,12 @@ import {
   Text
 } from 'react-native';
 import HomePage from './screens/homePage';
+import ViewImage from './screens/viewImage';
 
 const App = () => {
   
   return (
-    <View>
       <HomePage />
-    </View>
   );
 };
 

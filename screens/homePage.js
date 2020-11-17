@@ -1,17 +1,19 @@
 import React from 'react'
 import { View, Text, ImageBackground, StyleSheet, Image } from 'react-native'
 
-import colors from '../utils/colors'
+import AppButton from '../components/buttons'
 
 const HomePage = () => {
     return (
-        <ImageBackground source={require("../images/background.jpg")} style={styles.background} >
+        <ImageBackground source={require("../images/background.jpg")} style={styles.background} blurRadius={10} >
             <View style={styles.logoContainer}>
                 <Image style={styles.logo} source={require("../images/logo-red.png")} />
-                <Text>Buy it. Use it. Sell it</Text>
+                <Text style={styles.tagline} >Buy it. Use it. Sell it</Text>
             </View>
-            <View style={styles.loginButton} ></View>
-            <View style={styles.registerButton} ></View>
+            <View style={styles.buttonContainer} >
+                <AppButton text="login" onPress={()=>console.log('btn pressed !')} />
+                <AppButton text="register" color="secondary" onPress={()=>console.log('btn pressed !')} />
+            </View>
         </ImageBackground>
     )
 }
@@ -19,20 +21,11 @@ const HomePage = () => {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
+        height: 715,
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
-    loginButton: {
-        width: '100%',
-        height: 70,
-        backgroundColor: colors.primary
-    },
-    registerButton: {
-        width: '100%',
-        height: 70,
-        backgroundColor: colors.secondary
-    },
-    login: {
+    logo: {
         height: 100,
         width: 100,
     },
@@ -40,6 +33,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 70,
         alignItems: 'center'
+    },
+    buttonContainer: {
+        width: '100%',
+        padding: 10
+    },
+    tagline: {
+        fontSize: 24,
+        fontWeight: '600',
+        paddingVertical: 10
     }
 })
 

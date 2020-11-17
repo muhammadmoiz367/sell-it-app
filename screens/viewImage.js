@@ -16,14 +16,14 @@ const ViewImage = () => {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: colors.white
+        backgroundColor: colors.black
     },
     backBtn:{
         width: 50,
         height: 50,
         backgroundColor: colors.primary,
         position: 'absolute',
-        top:40,
+        top:20,
         left: 30
     },
     deleteBtn:{
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: colors.secondary,
         position: 'absolute',
-        top:40,
+        top:20,
         right: 30
     },
     image:{
