@@ -4,10 +4,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import DefaultStyles from '../utils/styles'
 
-const AppTextInput = ({name, ...otherProps}) => {
+const AppTextInput = ({icon, ...otherProps}) => {
     return (
         <View style={styles.container}>
-            {name && <Icon name={name} size={20} color={DefaultStyles.colors.medium} style={styles.icon} />}
+            {icon && <Icon name={icon} size={20} color={DefaultStyles.colors.medium} style={styles.icon} />}
             <TextInput style={DefaultStyles.text} {...otherProps} />
         </View>
     )

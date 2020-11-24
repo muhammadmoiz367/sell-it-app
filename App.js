@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
   Text
 } from 'react-native';
-import AppTextInput from './components/appTextInput';
-import Screen from './components/screen';
 
-import AccountScreen from './screens/accountScreen';
-import ListingPage from './screens/listingPage';
+import Screen from './components/screen';
+import LoginPage from './screens/loginPage';
 
 import colors from './utils/colors';
 
-const App = () => {
-  
+
+const App = () => {  
   return (
-    
-      <AppTextInput name="email" placeholder="example@gmail.com" />
-    
+    <LoginPage />
   );
 };
 
 const styles = StyleSheet.create({
   
 });
-
+ 
 export default App;
