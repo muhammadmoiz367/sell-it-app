@@ -5,15 +5,11 @@ import {
   Text
 } from 'react-native';
 
-import Screen from './components/screen';
-import LoginPage from './screens/loginPage';
-
-import colors from './utils/colors';
-
+import HomePage from './screens/homePage';
 
 const App = () => {  
   return (
-    <LoginPage />
+    <HomePage />
   );
 };
 

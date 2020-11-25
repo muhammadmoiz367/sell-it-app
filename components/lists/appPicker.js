@@ -2,8 +2,8 @@ import React, { Fragment, useState } from 'react'
 import { Button, Modal, StyleSheet, View, TouchableWithoutFeedback, TouchableOpacity, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import colors from '../utils/colors'
-import DefaultStyles from '../utils/styles'
+import colors from '../../utils/colors'
+import DefaultStyles from '../../utils/styles'
 import AppText from './appText'
 
 
@@ -23,23 +23,28 @@ import AppText from './appText'
 //   ]
   
 
-const AppTextPicker = ({name, placeholder, items, selectedCategory, onSelectItem}) => {
+const AppTextPicker = ({name, placeholder, items, selectedCategory, onSelectItem, PickerItemComponent=PickerItem, numberOfColumns=1}) => {
     const [modalVisibility, setModalVisibility]=useState(false);
     return (
         <Fragment>
             <TouchableWithoutFeedback onPress={()=>setModalVisibility(true)} >
                 <View style={styles.container}>
                     {name && <Icon name={name} size={20} color={DefaultStyles.colors.medium} style={styles.icon} />}
-                    <AppText style={styles.text}>{selectedCategory ? selectedCategory.label : placeholder} </AppText>
+                    {selectedCategory 
+                        ? (<AppText style={styles.text}>{selectedCategory.label}</AppText>)
+                        : (<AppText style={styles.placeholder}>{placeholder}</AppText>)
+                    }
                     <Icon name="chevron-down" size={20} color={DefaultStyles.colors.medium} />
                 </View>
             </TouchableWithoutFeedback>
             <Modal visible={modalVisibility} animationType="slide" >
                 <FlatList 
                     data={items}
+                    numColumns={numberOfColumns}
                     keyExtractor={item=>item.value.toString()}
                     renderItem={({item})=> 
-                        <PickerItem 
+                        <PickerItemComponent
+                            item={item}
                             label={item.label} 
                             onPress={()=>{
                                 setModalVisibility(false)
@@ -53,10 +58,10 @@ const AppTextPicker = ({name, placeholder, items, selectedCategory, onSelectItem
     )
 }
 
-const PickerItem=({label, onPress})=>{
+const PickerItem=({item, onPress})=>{
     return(
         <TouchableOpacity onPress={onPress}>
-            <AppText style={styles.pickerText}>{label}</AppText>
+            <AppText style={styles.pickerText}>{item.label}</AppText>
         </TouchableOpacity>
     )
 }
@@ -75,6 +80,10 @@ const styles = StyleSheet.create({
     icon: {
         marginRight: 10,
         marginTop: 3
+    },
+    placeholder: {
+        color: DefaultStyles.colors.medium,
+        flex: 1
     },
     text:{
         flex: 1

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, ImageBackground, StyleSheet, Image } from 'react-native'
 
-import AppButton from '../components/buttons'
+import AppButton from '../components/lists/buttons'
 
 const HomePage = () => {
     return (
