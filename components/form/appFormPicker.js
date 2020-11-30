@@ -5,7 +5,7 @@ import {useFormikContext} from 'formik'
 import AppPicker from '../lists/appPicker'
 import ErrorMessage from './errorMessage'
 
-const appFormPicker = ({items , name, placeholder, PickerItemComponent, numberOfColumns}) => {
+const AppFormPicker = ({items , name, placeholder, PickerItemComponent, numberOfColumns}) => {
     const {errors, setFieldValue, touched, values} = useFormikContext()
     return (
         <>
@@ -22,6 +22,6 @@ const appFormPicker = ({items , name, placeholder, PickerItemComponent, numberOf
     )
 }
 
-export default appFormPicker
+export default AppFormPicker
 
 const styles = StyleSheet.create({})

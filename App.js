@@ -6,10 +6,12 @@ import {
 } from 'react-native';
 
 import HomePage from './screens/homePage';
+import ListingEditPage from './screens/listingEditPage';
 
 const App = () => {  
+  
   return (
-    <HomePage />
+    <ListingEditPage />
   );
 };
 

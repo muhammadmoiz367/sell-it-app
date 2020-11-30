@@ -11,8 +11,8 @@ const HomePage = () => {
                 <Text style={styles.tagline} >Buy it. Use it. Sell it</Text>
             </View>
             <View style={styles.buttonContainer} >
-                <AppButton text="login" onPress={()=>console.log('btn pressed !')} />
-                <AppButton text="register" color="secondary" onPress={()=>console.log('btn pressed !')} />
+                <AppButton text="login" onPress={()=>console.log('login btn pressed !')} />
+                <AppButton text="register" color="secondary" onPress={()=>console.log('signup btn pressed !')} />
             </View>
         </ImageBackground>
     )
