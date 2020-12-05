@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import * as Yup from 'yup'
+import * as Location from 'react-native-location'
 
 import {AppForm, AppFormField as FormField, AppSubmitButton as SubmitButton, AppFormPicker as Picker} from '../components/form'
 import FormImagePicker from '../components/form/formImagePicker'
@@ -73,6 +74,29 @@ const categories = [
   
 
 const ListingEditPage = () => {
+  const [location, setLocation]=useState()
+  Location.configure({ distanceFilter: 5.0 });
+
+  const getLocation=async ()=>{
+    const {granted} = await Location.requestPermission({
+      ios: 'whenInUse',
+      android: {
+        detail: 'coarse',
+        rationale: {
+          title: "We need to access your location",
+          message: "We use your location to show where you are on the map",
+          buttonPositive: "OK",
+          buttonNegative: "Cancel"
+        }
+      }
+    })
+    if(!granted) return
+    const {longitude, latitude} =await Location.getLatestLocation({ timeout: 60000 })
+    subscribeToLocationUpdates({longitude, latitude})
+  }
+  useEffect(() => {
+    getLocation()
+  }, [])
   
     return (
         <Screen style={styles.container}>
@@ -84,7 +108,7 @@ const ListingEditPage = () => {
                     category: null,
                     image: []
                 }}
-                onSubmit={values=>console.log(values)}
+                onSubmit={()=>console.log(location)}
                 validationSchema={validationSchema}
             >    
                 <FormImagePicker name="image" />

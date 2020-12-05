@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native'
 
-import HomePage from './screens/homePage';
-import ListingEditPage from './screens/listingEditPage';
+import AuthNavigator from './navigation/authNavigator';
+import navigationTheme from './navigation/navigationTheme';
+import AppNavigator from './navigation/appNavigator';
+
 
 const App = () => {  
-  
   return (
-    <ListingEditPage />
+    <NavigationContainer theme={navigationTheme}>
+      <AuthNavigator />
+    </NavigationContainer>
   );
 };
 

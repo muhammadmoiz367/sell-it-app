@@ -5,13 +5,14 @@ import {ListItem, AppText} from '../components/lists'
 
 import colors from '../utils/colors'
 
-const DetailsPage = () => {
+const DetailsPage = ({route}) => {
+    const item=route.params
     return (
         <View>
-            <Image style={styles.image} source={require("../images/jacket.jpg")} />
+            <Image style={styles.image} source={item.image} />
             <View style={styles.detailsContainer}>
-                <AppText style={styles.text} >Red jacket for sale</AppText>
-                <AppText style={styles.price} >$100</AppText>
+                <AppText style={styles.text} >{item.title}</AppText>
+                <AppText style={styles.price} >${item.price}</AppText>
             </View>
             <View style={styles.userContainer} >
                 <ListItem

@@ -5,22 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../../utils/colors'
 import DefaultStyles from '../../utils/styles'
 import AppText from './appText'
-
-
-// const categories=[
-//     {
-//       label: 'Clothing',
-//       value: 1
-//     },
-//     {
-//       label: 'Furniture',
-//       value: 2
-//     },
-//     {
-//       label: 'Cars',
-//       value: 3
-//     }
-//   ]
   
 
 const AppTextPicker = ({name, placeholder, items, selectedCategory, onSelectItem, PickerItemComponent=PickerItem, numberOfColumns=1}) => {
