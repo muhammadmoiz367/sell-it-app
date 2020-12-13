@@ -1,7 +1,8 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
-import {ListItem, AppText} from '../components/lists'
+import {ListItem} from '../components/lists'
+import AppText from '../components/appText'
 
 import colors from '../utils/colors'
 
@@ -16,7 +17,7 @@ const DetailsPage = ({route}) => {
             </View>
             <View style={styles.userContainer} >
                 <ListItem
-                    image={require('../images/mosh.jpg')}
+                    image={require('../assets/images/mosh.jpg')}
                     title="Brad Traversy"
                     subTitle="7 Listings"
                  />

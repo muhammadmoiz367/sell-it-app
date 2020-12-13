@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, Text } from 'react-native'
 
-import DefaultStyles from '../../utils/styles'
+import DefaultStyles from '../utils/styles'
 
 const AppText = ({children, style, ...otherProps}) => {
     return (

@@ -6,11 +6,10 @@ import AuthNavigator from './navigation/authNavigator';
 import navigationTheme from './navigation/navigationTheme';
 import AppNavigator from './navigation/appNavigator';
 
-
 const App = () => {  
   return (
     <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator />
+      <AppNavigator />
     </NavigationContainer>
   );
 };

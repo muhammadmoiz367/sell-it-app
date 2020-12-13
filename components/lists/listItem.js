@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import colors from '../../utils/colors'
-import AppText from './appText'
+import AppText from '../appText'
 
 const ListItem = ({onPress, title, subTitle, image, IconContainer, rightActions}) => {
     return (

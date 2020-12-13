@@ -13,7 +13,7 @@ const ViewImage = () => {
             <View style={styles.deleteBtn} >
                 <Icon name="trash-can-outline" color="white" size={35} /> 
             </View>
-            <Image source={require('../images/chair.jpg')} resizeMode="contain" style={styles.image} />
+            <Image source={require('../assets/images/chair.jpg')} resizeMode="contain" style={styles.image} />
         </View>
     )
 }

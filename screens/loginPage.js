@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, KeyboardAvoidingView, StyleSheet } from 'react-native'
 import * as Yup from 'yup'
 
-import Screen from '../components/lists/screen'
+import Screen from '../components/screen'
 import {AppForm, AppFormField, AppSubmitButton} from '../components/form'
 
 const validationSchema=Yup.object().shape({
@@ -14,7 +14,7 @@ const LoginPage = () => {
     return (
         <Screen style={styles.container}>
             <KeyboardAvoidingView behavior="position">
-                <Image source={require('../images/logo-red.png')} style={styles.logo} />
+                <Image source={require('../assets/images/logo-red.png')} style={styles.logo} />
                 <AppForm
                     initialValues={{email: '', password: ''}}
                     onSubmit={(values)=>console.log(values)}

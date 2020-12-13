@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import {useFormikContext} from 'formik'
 
-import AppPicker from '../lists/appPicker'
+import AppPicker from '../picker/appPicker'
 import ErrorMessage from './errorMessage'
 
 const AppFormPicker = ({items , name, placeholder, PickerItemComponent, numberOfColumns}) => {

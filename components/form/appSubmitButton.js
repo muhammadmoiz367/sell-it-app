@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import {useFormikContext} from 'formik'
 
-import AppButton from '../lists/buttons'
+import AppButton from '../buttons'
 
 const AppSubmitButton = ({title}) => {
     const {handleSubmit} = useFormikContext();

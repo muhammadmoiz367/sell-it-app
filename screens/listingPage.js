@@ -1,33 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import {Card, Screen} from '../components/lists'
+import AppText from '../components/appText'
+import Card from '../components/card'
+import Screen from '../components/screen'
+import AppButton from '../components/buttons'
 import colors from '../utils/colors'
-
-const listings=[
-    {
-        id: 1,
-        title: 'Red jacket for sale',
-        price: 100,
-        image: require('../images/jacket.jpg')
-    },
-    {
-        id: 2,
-        title: 'Couch in great condition',
-        price: 1000,
-        image: require('../images/couch.jpg')
-    },
-    {
-        id: 3,
-        title: 'Chair in great condition',
-        price: 500,
-        image: require('../images/chair2.jpg')
-    }
-]
+import listingApi from '../api/listings'
+import ActivityIndicator from '../components/activityIndicator'
+import useApi from '../hooks/useApi'
 
 const ListingPage = ({navigation}) => {
+    const {data: listings, error, loading: isLoading, request: loadListings} = useApi(listingApi.getListings)
+
+    useEffect(() => {
+        loadListings()
+    }, [])
+
     return (
         <Screen style={styles.screen}>
+            {error && (
+                <>
+                    <AppText>Couldn't find any posts</AppText>
+                    <AppButton text="Retry" onPress={loadListings} />
+                </>
+            )}
+            <ActivityIndicator visible={isLoading}  /> 
             <FlatList
                 data={listings}
                 keyExtractor={listing=> listing.id.toString()}
@@ -35,7 +33,7 @@ const ListingPage = ({navigation}) => {
                     <Card 
                         title={item.title} 
                         subTitle={"$" + item.price} 
-                        image={item.image} 
+                        imageUrl={item.images[0].url} 
                         onPress={()=>navigation.navigate("ListingDetails", item)}
                     />
                 }

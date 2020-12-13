@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, Text, ImageBackground, StyleSheet, Image } from 'react-native'
 
-import AppButton from '../components/lists/buttons'
+import AppButton from '../components/buttons'
 import route from '../navigation/routes'
 
 const HomePage = ({navigation}) => {
     return (
-        <ImageBackground source={require("../images/background.jpg")} style={styles.background} blurRadius={10} >
+        <ImageBackground source={require("../assets/images/background.jpg")} style={styles.background} blurRadius={10} >
             <View style={styles.logoContainer}>
-                <Image style={styles.logo} source={require("../images/logo-red.png")} />
+                <Image style={styles.logo} source={require("../assets/images/logo-red.png")} />
                 <Text style={styles.tagline} >Buy it. Use it. Sell it</Text>
             </View>
             <View style={styles.buttonContainer} >

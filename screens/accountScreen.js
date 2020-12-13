@@ -1,7 +1,9 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import {ListItem, ListItemSeparator, IconTemplate, Screen} from '../components/lists'
+import {ListItem, ListItemSeparator} from '../components/lists'
+import IconTemplate from '../components/icon'
+import Screen from '../components/screen'
 import colors from '../utils/colors'
 
 const menuItems=[
@@ -26,7 +28,7 @@ const AccountScreen = ({navigation}) => {
     return (
         <Screen style={styles.screen}>
             <View style={styles.container}>
-                <ListItem title="Muhammad Moiz" subTitle="muhammadmoiz367@gmail.com" image={require('../images/profile.png')} />
+                <ListItem title="Muhammad Moiz" subTitle="muhammadmoiz367@gmail.com" image={require('../assets/images/profile.png')} />
             </View>
             <View  style={styles.container}>
                 <FlatList

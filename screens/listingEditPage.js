@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import * as Yup from 'yup'
 import * as Location from 'react-native-location'
 
 import {AppForm, AppFormField as FormField, AppSubmitButton as SubmitButton, AppFormPicker as Picker} from '../components/form'
+import CategoryPickerItem from '../components/picker/categoryPickerItem'
 import FormImagePicker from '../components/form/formImagePicker'
-import {Screen, CategoryPickerItem} from '../components/lists'
+import Screen from '../components/screen'
+import listings from '../api/listings'
+import UploadPage from './uploadPage'
 
 const validationSchema=Yup.object().shape({
     title: Yup.string().required().min(1).label("Title"),
@@ -74,67 +77,84 @@ const categories = [
   
 
 const ListingEditPage = () => {
-  const [location, setLocation]=useState()
-  Location.configure({ distanceFilter: 5.0 });
+  const [uploadVisible, setUploadVisible]=useState(false);
+  const [progress, setProgress]=useState(0);
+  // const [location, setLocation]=useState()
+  // Location.configure({ distanceFilter: 5.0 });
 
-  const getLocation=async ()=>{
-    const {granted} = await Location.requestPermission({
-      ios: 'whenInUse',
-      android: {
-        detail: 'coarse',
-        rationale: {
-          title: "We need to access your location",
-          message: "We use your location to show where you are on the map",
-          buttonPositive: "OK",
-          buttonNegative: "Cancel"
-        }
-      }
-    })
-    if(!granted) return
-    const {longitude, latitude} =await Location.getLatestLocation({ timeout: 60000 })
-    subscribeToLocationUpdates({longitude, latitude})
+  // const getLocation=async ()=>{
+  //   const {granted} = await Location.requestPermission({
+  //     ios: 'whenInUse',
+  //     android: {
+  //       detail: 'coarse',
+  //       rationale: {
+  //         title: "We need to access your location",
+  //         message: "We use your location to show where you are on the map",
+  //         buttonPositive: "OK",
+  //         buttonNegative: "Cancel"
+  //       }
+  //     }
+  //   })
+
+  //   if(!granted) return null
+  //   const {longitude, latitude} =await Location.getLatestLocation({ timeout: 60000 })
+  //   subscribeToLocationUpdates({longitude, latitude})
+  // }
+
+  const handleSubmit=async (listing, {resetForm})=>{
+    setProgress(0)
+    setUploadVisible(true);
+    const result=await listings.addListing({...listing}, (progress)=>setProgress(progress))
+
+    if(!result.ok){
+      setUploadVisible(false)
+      return alert('Could not post the ad');
+    } 
+    resetForm()
   }
+
   useEffect(() => {
-    getLocation()
+    //getLocation()
   }, [])
   
     return (
         <Screen style={styles.container}>
-            <AppForm
-                initialValues={{
-                    title: '',
-                    price: '',
-                    description: '',
-                    category: null,
-                    image: []
-                }}
-                onSubmit={()=>console.log(location)}
-                validationSchema={validationSchema}
-            >    
-                <FormImagePicker name="image" />
-                <FormField maxLength={255} name="title" placeholder="Title" />
-                <FormField 
-                    keyboardType="numeric"
-                    maxLength={8}
-                    name="price"
-                    placeholder="Price"
-                />
-                <Picker 
-                    items={categories}
-                    name="category"
-                    placeholder="Category"
-                    numberOfColumns={3}
-                    PickerItemComponent={CategoryPickerItem}
-                />
-                <FormField 
-                    maxLength={255}
-                    multiLine
-                    name="description"
-                    numberOfLines={3}
-                    placeholder="Description"
-                />
-                <SubmitButton title="Post" />
-            </AppForm>
+          <UploadPage visible={uploadVisible} progress={progress} onDone={()=>setUploadVisible(false)} />
+          <AppForm
+              initialValues={{
+                  title: '',
+                  price: '',
+                  description: '',
+                  category: null,
+                  image: []
+              }}
+              onSubmit={handleSubmit}
+              validationSchema={validationSchema}
+          >    
+              <FormImagePicker name="image" />
+              <FormField maxLength={255} name="title" placeholder="Title" />
+              <FormField 
+                  keyboardType="numeric"
+                  maxLength={8}
+                  name="price"
+                  placeholder="Price"
+              />
+              <Picker 
+                  items={categories}
+                  name="category"
+                  placeholder="Category"
+                  numberOfColumns={3}
+                  PickerItemComponent={CategoryPickerItem}
+              />
+              <FormField 
+                  maxLength={255}
+                  multiLine
+                  name="description"
+                  numberOfLines={3}
+                  placeholder="Description"
+              />
+              <SubmitButton title="Post" />
+          </AppForm>
         </Screen>
     )
 }

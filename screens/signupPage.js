@@ -2,7 +2,7 @@ import React from "react";
 import { Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
-import Screen from "../components/lists/screen";
+import Screen from "../components/screen";
 import {
   AppForm as Form,
   AppFormField as FormField,
@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
 function SignUp() {
   return (
     <Screen style={styles.container}>
-      <Image source={require('../images/logo-red.png')} style={styles.logo} />
+      <Image source={require('../assets/images/logo-red.png')} style={styles.logo} />
       <Form
         initialValues={{ name: "", email: "", password: "" }}
         onSubmit={(values) => console.log(values)}

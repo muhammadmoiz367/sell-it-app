@@ -1,32 +1,33 @@
 import React, { useState } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 
-import {ListItem, ListItemSeparator, ListItemDeleteAction, Screen} from '../components/lists'
+import {ListItem, ListItemSeparator, ListItemDeleteAction} from '../components/lists'
+import Screen from '../components/screen'
 
 const initialMessages=[
     {
         id: 1,
         title: 'Title 1',
         description: 'Description 1',
-        image: require('../images/profile.png')
+        image: require('../assets/images/profile.png')
     },
     {
         id: 2,
         title: 'Title 2',
         description: 'Description 2',
-        image: require('../images/profile.png')
+        image: require('../assets/images/profile.png')
     },
     {
         id: 3,
         title: 'Title 3',
         description: 'Description 3',
-        image: require('../images/profile.png')
+        image: require('../assets/images/profile.png')
     },
     {
         id: 4,
         title: 'Title 4',
         description: 'Description 4',
-        image: require('../images/profile.png')
+        image: require('../assets/images/profile.png')
     }
 ]
 
@@ -58,13 +59,13 @@ const MessagePage = () => {
                             id: 1,
                             title: 'Title 1',
                             description: 'Description 1',
-                            image: require('../images/profile.png')
+                            image: require('../assets/images/profile.png')
                         },
                         {
                             id: 2,
                             title: 'Title 2',
                             description: 'Description 2',
-                            image: require('../images/profile.png')
+                            image: require('../assets/images/profile.png')
                         }
                     ])
                 }}
