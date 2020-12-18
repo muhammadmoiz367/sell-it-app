@@ -5,6 +5,7 @@ import {ListItem, ListItemSeparator} from '../components/lists'
 import IconTemplate from '../components/icon'
 import Screen from '../components/screen'
 import colors from '../utils/colors'
+import useAuth from '../auth/useAuth'
 
 const menuItems=[
     {
@@ -25,10 +26,13 @@ const menuItems=[
 ]
 
 const AccountScreen = ({navigation}) => {
+    const {user, setUser, logOut} =useAuth()
+
+
     return (
         <Screen style={styles.screen}>
             <View style={styles.container}>
-                <ListItem title="Muhammad Moiz" subTitle="muhammadmoiz367@gmail.com" image={require('../assets/images/profile.png')} />
+                <ListItem title={user.name} subTitle={user.email} image={require('../assets/images/profile.png')} />
             </View>
             <View  style={styles.container}>
                 <FlatList
@@ -44,7 +48,7 @@ const AccountScreen = ({navigation}) => {
                     ItemSeparatorComponent={ListItemSeparator}
                 />
             </View>
-            <ListItem title="Logout" IconContainer={<IconTemplate name="logout" backgroundColor="#ffe66d" />} />
+            <ListItem title="Logout" IconContainer={<IconTemplate name="logout" backgroundColor="#ffe66d" />} onPress={()=>logOut()} />
         </Screen>
     )
 }

@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Image, KeyboardAvoidingView, StyleSheet } from 'react-native'
 import * as Yup from 'yup'
 
 import Screen from '../components/screen'
-import {AppForm, AppFormField, AppSubmitButton} from '../components/form'
+import {AppForm, AppFormField, AppSubmitButton, ErrorMessage} from '../components/form'
+import Auth from '../api/auth'
+import useAuth from '../auth/useAuth'
 
 const validationSchema=Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -11,13 +13,23 @@ const validationSchema=Yup.object().shape({
 })
 
 const LoginPage = () => {
+    const {logIn}=useAuth()
+    const [loginError, setLoginError]=useState(false)
+    
+    const handleSubmit=async ({email, password})=>{
+        const result=await Auth.login(email, password);
+        if(!result.ok)
+            return setLoginError(true)
+        setLoginError(false)
+        logIn(result.data)
+    }
     return (
         <Screen style={styles.container}>
             <KeyboardAvoidingView behavior="position">
                 <Image source={require('../assets/images/logo-red.png')} style={styles.logo} />
                 <AppForm
                     initialValues={{email: '', password: ''}}
-                    onSubmit={(values)=>console.log(values)}
+                    onSubmit={handleSubmit}
                     validationSchema={validationSchema}
                 >
                     <AppFormField
@@ -39,6 +51,7 @@ const LoginPage = () => {
                         textContentType="password"
                     />
                     <AppSubmitButton title="Login" />
+                    <ErrorMessage error="Invalid email or password. Try again" visible={loginError} />
                 </AppForm>
             </KeyboardAvoidingView>
         </Screen>

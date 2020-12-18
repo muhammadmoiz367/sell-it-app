@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 
+
 import colors from '../utils/colors'
 import AppText from './appText'
 

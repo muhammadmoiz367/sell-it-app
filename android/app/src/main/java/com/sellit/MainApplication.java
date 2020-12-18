@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.github.reactnativecommunity.location.RNLocationPackage;
 import com.imagepicker.ImagePickerPackage;

@@ -16,6 +16,10 @@ target 'SellIt' do
 
   pod 'react-native-location', :path => '../node_modules/react-native-location'
 
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
   target 'SellItTests' do
     inherit! :complete
     # Pods for testing

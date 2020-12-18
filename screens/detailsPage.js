@@ -10,7 +10,7 @@ const DetailsPage = ({route}) => {
     const item=route.params
     return (
         <View>
-            <Image style={styles.image} source={item.image} />
+            <Image style={styles.image} source={{uri: item.images[0].url}} />
             <View style={styles.detailsContainer}>
                 <AppText style={styles.text} >{item.title}</AppText>
                 <AppText style={styles.price} >${item.price}</AppText>

@@ -3,6 +3,7 @@ import { View, Text, ImageBackground, StyleSheet, Image } from 'react-native'
 
 import AppButton from '../components/buttons'
 import route from '../navigation/routes'
+import colors from '../utils/colors'
 
 const HomePage = ({navigation}) => {
     return (
@@ -42,7 +43,8 @@ const styles = StyleSheet.create({
     tagline: {
         fontSize: 24,
         fontWeight: '600',
-        paddingVertical: 10
+        paddingVertical: 10,
+        color: colors.dark
     }
 })
 
